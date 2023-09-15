@@ -5,14 +5,15 @@ import { useEffect, useState } from "react"
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import { useNavigate } from "react-router-dom"
+import  { Get} from "../config/apiMethod"
 
 export default function CommentScreen() {
     const [Data, setData] = useState([])
 
 
     const getData = () => {
-        axios
-            .get("https://jsonplaceholder.typicode.com/comments")
+        
+            Get("comments")
             .then((res) => {
                 // console.log(res.data)
                 setData([...res.data])
@@ -29,7 +30,7 @@ export default function CommentScreen() {
     }
         , [])
        let DeleteCommemt=(id)=>{
-        axios
+       axios
         .delete(`https://jsonplaceholder.typicode.com/comments/${id}`)
         .then(()=>{
             console.log("Comment Deleted Successfully ")
